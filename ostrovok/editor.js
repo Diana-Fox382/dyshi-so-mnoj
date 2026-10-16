@@ -789,7 +789,7 @@ function openKeySheet(thenSave) {
   sh.append(el("p", "ed-hint", "Чтобы редактор мог сохранять картинки, видео и место плеера прямо на сайт, нужен ключ от GitHub. Он хранится только в этом браузере на этом устройстве и даёт доступ только к репозиторию сайта."));
   // GitHub fills in the name, a one-year term and the right to write files from this link; only the repository is picked by hand
   const form = "https://github.com/settings/personal-access-tokens/new?name=" + encodeURIComponent("Островок") +
-    "&description=" + encodeURIComponent("Сохранение из редактора островка на сайте " + REPO.repo) + "&expires_in=366&contents=write";
+    "&description=" + encodeURIComponent("Сохранение из редактора островка на сайте " + REPO.repo) + "&expires_in=365&contents=write";
   const ol = el("ol", "ed-steps");
   ol.innerHTML =
     '<li>Открой <a target="_blank" rel="noopener">готовую форму ключа на GitHub</a> (если попросит, войди в аккаунт). Название, срок на год и нужное право там уже заполнены.</li>' +
