@@ -139,7 +139,7 @@ ul.list li{padding-left:14px;border-left:1px solid var(--line2)}
       <button class="chip" id="cnt" aria-pressed="true">Счёт</button>
       <button class="chip" id="enc" aria-pressed="true">Подбадривания</button>
       <button class="chip" id="amb" aria-pressed="true">Тихий фон</button>
-      <p class="hint">Когда включены и «Вдох и выдох», и «Счёт», команды звучат только первые два дыхания, а дальше остаётся счёт. Подбадривания звучат, когда счёт выключен.</p>
+      <p class="hint">Когда включено и то и другое, после команды идёт пауза, а счёт отмечает оставшиеся секунды. Подбадривания звучат, когда счёт выключен.</p>
     </div>
   </div>
 
@@ -221,7 +221,7 @@ document.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{cfg.d=+b.dataset
 // the picture speed: squares or generations per breath cycle; mid-practice the picture restarts from where the breath is
 document.querySelectorAll("[data-spd]").forEach(b=>b.onclick=()=>{if(+b.dataset.spd===cfg.spd)return;cfg.spd=+b.dataset.spd;save();syncChips();if(run&&!goldFresh)spdReset=true});
 // the sound switches act at once, also in the middle of a phase
-$("#cmd").onclick=()=>{cfg.cmd=!cfg.cmd;if(cfg.cmd&&run)run.cmdUntil=run.cycle+2;save();syncChips();resync()};
+$("#cmd").onclick=()=>{cfg.cmd=!cfg.cmd;save();syncChips();resync()};
 $("#cnt").onclick=()=>{cfg.count=!cfg.count;save();syncChips();resync()};
 $("#enc").onclick=()=>{cfg.enc=!cfg.enc;save();syncChips();resync()};
 $("#amb").onclick=()=>{cfg.amb=!cfg.amb;save();syncChips();if(run&&ambGain)ambGain.gain.setTargetAtTime(cfg.amb?0.035:0,ctx.currentTime,0.12)};
@@ -281,11 +281,12 @@ const allowed=cat=>cat==="cmd"?cfg.cmd:cat==="count"?cfg.count:cfg.enc&&!cfg.cou
 // what the voice says during one phase with the current switches: the cue, the count, or now and then a kind word on the exhale
 function cues(ph){
   const out=[];
-  // with the count on, the cue is said only for the first two breaths (and two more after the cue switch is turned on), then it is just the count from one, so words never crowd each other
-  const say=cfg.cmd&&(!cfg.count||ph.c<run.cmdUntil);
+  // the cue opens the phase, then a calm pause, then the count from one for the seconds that are left; the phase itself never gets longer
+  const say=cfg.cmd;
   if(say)out.push([ph.k,ph.cmdAt,"cmd"]);
-  if(cfg.count&&!say){for(let n=bufs.n1?1:2;n<=Math.min(ph.dur,8);n++)out.push(["n"+n,ph.start+(n-1)+0.2,"count"])}
-  else if(!cfg.count&&cfg.enc&&ph.k==="out"&&ph.c%3===2){const k=["good","safe"][(ph.c/3|0)%2],at=ph.cmdAt+(say&&bufs.out?bufs.out.duration+0.9:0.6);if(bufs[k]&&at+bufs[k].duration+0.4<=ph.start+ph.dur)out.push([k,at,"enc"])}
+  if(cfg.count){const t0=say&&bufs[ph.k]?ph.cmdAt+bufs[ph.k].duration+0.6:ph.start+0.2,end=ph.start+ph.dur-0.1;
+    for(let n=1;n<=8;n++){const t=t0+(n-1),b=bufs["n"+n];if(!b||t+b.duration>end)break;out.push(["n"+n,t,"count"])}}
+  else if(cfg.enc&&ph.k==="out"&&ph.c%3===2){const k=["good","safe"][(ph.c/3|0)%2],at=ph.cmdAt+(say&&bufs.out?bufs.out.duration+0.9:0.6);if(bufs[k]&&at+bufs[k].duration+0.4<=ph.start+ph.dur)out.push([k,at,"enc"])}
   return out;
 }
 // after a switch: words not yet started are planned again, a word sounding right now fades out if its switch went off
@@ -296,7 +297,7 @@ function resync(){
 }
 
 // timeline: phases {k,start,dur,from,to} scheduled a little ahead of the clock; s0 = when the session began, kept across rhythm changes
-function newRun(t0,s0=t0){goldC=0;const base=goldFresh?0:goldBase+Math.floor(goldNow-goldBase+1e-6);return{t0,s0,u0:base,f0:goldFresh?0:Math.max(0,goldNow-base),phases:[],next:t0,idx:0,cycle:0,cmdUntil:2,cmdEnd:-1,end:cfg.d?s0+cfg.d:Infinity,done:false,outroAt:null}}
+function newRun(t0,s0=t0){goldC=0;const base=goldFresh?0:goldBase+Math.floor(goldNow-goldBase+1e-6);return{t0,s0,u0:base,f0:goldFresh?0:Math.max(0,goldNow-base),phases:[],next:t0,idx:0,cycle:0,cmdEnd:-1,end:cfg.d?s0+cfg.d:Infinity,done:false,outroAt:null}}
 function schedule(){
   if(!run)return;const pat=shaped(cfg.p);if(run.idx>=pat.length)run.idx=0;
   while(!run.done&&run.next<ctx.currentTime+1.5){
