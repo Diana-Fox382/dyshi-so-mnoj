@@ -76,12 +76,18 @@ ul.list li{padding-left:14px;border-left:1px solid var(--line2)}
 .sheet-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;position:sticky;bottom:-22px;margin:0 -22px -22px;padding:16px 22px 22px;background:linear-gradient(rgba(36,26,17,0),var(--sheet) 16px)}
 .sheet-foot .go{margin-left:auto}
 .veil[hidden]{display:none}
+.nav{display:flex;justify-content:center;gap:6px;font-size:13px;margin-bottom:-6px}
+.nav a,.nav span{padding:6px 13px;border-radius:999px;border:1px solid transparent;color:var(--muted);text-decoration:none;transition:color .3s,border-color .3s}
+.nav a:hover{color:var(--fg);border-color:var(--line)}
+.nav [aria-current]{color:var(--honey);border-color:var(--line)}
+.nav a:focus-visible{outline:2px solid var(--honey);outline-offset:3px}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 @media (prefers-reduced-motion:reduce){.halo,.face{transform:none}.veil{animation:none}}
 </style>
 
 <canvas class="gold" id="gold" aria-hidden="true"></canvas>
 <div class="wrap" id="page">
+  <nav class="nav" aria-label="Разделы"><span aria-current="page">Дыши со мной</span><a href="ostrovok/">Островок</a></nav>
   <header>
     <h1>Дыши со мной</h1>
     <p class="sub" id="sub">Открыть эту страницу - уже забота о себе.</p>
