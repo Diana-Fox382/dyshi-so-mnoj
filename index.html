@@ -139,7 +139,7 @@ ul.list li{padding-left:14px;border-left:1px solid var(--line2)}
       <button class="chip" id="cnt" aria-pressed="true">Счёт</button>
       <button class="chip" id="enc" aria-pressed="true">Подбадривания</button>
       <button class="chip" id="amb" aria-pressed="true">Тихий фон</button>
-      <p class="hint">Когда включено и то и другое, после команды идёт пауза, а счёт отмечает оставшиеся секунды. Подбадривания звучат, когда счёт выключен.</p>
+      <p class="hint">Когда включено и то и другое, после команды идёт пауза, и счёт продолжается с той секунды, на которой она закончилась. Подбадривания звучат, когда счёт выключен.</p>
     </div>
   </div>
 
@@ -281,11 +281,11 @@ const allowed=cat=>cat==="cmd"?cfg.cmd:cat==="count"?cfg.count:cfg.enc&&!cfg.cou
 // what the voice says during one phase with the current switches: the cue, the count, or now and then a kind word on the exhale
 function cues(ph){
   const out=[];
-  // the cue opens the phase, then a calm pause, then the count from one for the seconds that are left; the phase itself never gets longer
+  // numbers always name the second of the phase; after a cue the count joins in at the first second that leaves a calm pause (usually «Три»)
   const say=cfg.cmd;
   if(say)out.push([ph.k,ph.cmdAt,"cmd"]);
-  if(cfg.count){const t0=say&&bufs[ph.k]?ph.cmdAt+bufs[ph.k].duration+0.6:ph.start+0.2,end=ph.start+ph.dur-0.1;
-    for(let n=1;n<=8;n++){const t=t0+(n-1),b=bufs["n"+n];if(!b||t+b.duration>end)break;out.push(["n"+n,t,"count"])}}
+  if(cfg.count){const free=say&&bufs[ph.k]?ph.cmdAt+bufs[ph.k].duration+0.5:-Infinity;
+    for(let n=1;n<=Math.min(ph.dur,8);n++){const t=ph.start+(n-1)+0.2;if(t>=free&&bufs["n"+n])out.push(["n"+n,t,"count"])}}
   else if(cfg.enc&&ph.k==="out"&&ph.c%3===2){const k=["good","safe"][(ph.c/3|0)%2],at=ph.cmdAt+(say&&bufs.out?bufs.out.duration+0.9:0.6);if(bufs[k]&&at+bufs[k].duration+0.4<=ph.start+ph.dur)out.push([k,at,"enc"])}
   return out;
 }
