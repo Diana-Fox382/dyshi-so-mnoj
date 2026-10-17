@@ -31,21 +31,37 @@
   ],
   "videos": [
     {
-      "id": "v-mvbjgrmhssg7",
-      "title": "Here Comes a Thought Steven Universe Cartoon Network",
-      "src": "media/v-mvbjgrmhssg7.mp4",
-      "poster": "media/v-mvbjgrmhssg7-p.jpg",
-      "thumb": "media/v-mvbjgrmhssg7-t.jpg",
+      "id": "v-mvbn31ijmai0",
+      "title": "Here Comes a Thought Steven Universe Cartoon Network (1)",
+      "src": "media/v-mvbn31ijmai0.mp4",
+      "poster": "media/v-mvbn31ijmai0-p.jpg",
+      "thumb": "media/v-mvbn31ijmai0-t.jpg",
       "w": 1280,
       "h": 720,
       "dur": 212.9,
-      "size": 9708358,
+      "size": 5641834,
+      "cats": [],
+      "by": "",
+      "link": "",
+      "loop": false,
+      "codec": "avc1"
+    },
+    {
+      "id": "v-mvbn8f0qkpl3",
+      "title": "Steven Universe let us adore you (Complete)",
+      "src": "media/v-mvbn8f0qkpl3.mp4",
+      "poster": "media/v-mvbn8f0qkpl3-p.jpg",
+      "thumb": "media/v-mvbn8f0qkpl3-t.jpg",
+      "w": 1920,
+      "h": 1080,
+      "dur": 172.7,
+      "size": 25613738,
       "cats": [
-        "calm"
+        "clips"
       ],
-      "by": "Cartoon Network",
-      "link": "https://youtu.be/dHg50mdODFM?si=3nhCgiQzrLZUPso6",
-      "loop": true,
+      "by": "My Music Garbage",
+      "link": "https://youtu.be/aMNfgrzEejk",
+      "loop": false,
       "codec": "avc1"
     }
   ]
