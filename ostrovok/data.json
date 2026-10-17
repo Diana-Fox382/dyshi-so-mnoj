@@ -81,6 +81,25 @@
       "codec": "avc1"
     },
     {
+      "id": "v-mvbnlxglshxa",
+      "title": "Rio Movie CLIP I Wanna Party (2011)",
+      "src": "media/v-mvbnlxglshxa.mp4",
+      "poster": "media/v-mvbnlxglshxa-p.jpg",
+      "thumb": "media/v-mvbnlxglshxa-t.jpg",
+      "w": 1280,
+      "h": 720,
+      "dur": 162.4,
+      "size": 20827909,
+      "cats": [
+        "clips",
+        "funny"
+      ],
+      "by": "Movieclips",
+      "link": "https://youtu.be/Gt4t3ZZsAnQ",
+      "loop": false,
+      "codec": "avc1"
+    },
+    {
       "id": "v-mvbn8f0qkpl3",
       "title": "Steven Universe let us adore you (Complete)",
       "src": "media/v-mvbn8f0qkpl3.mp4",
@@ -102,8 +121,8 @@
       "id": "v-mvbnhy5ewegw",
       "title": "Храбрая сердцем Коснись неба Brave Touch The Sky (FULLHD1080",
       "src": "media/v-mvbnhy5ewegw.mp4",
-      "poster": "media/v-mvbnhy5ewegw-p.jpg",
-      "thumb": "media/v-mvbnhy5ewegw-t.jpg",
+      "poster": "media/v-mvbnhy5ewegw-pmvbnk0ev.jpg",
+      "thumb": "media/v-mvbnhy5ewegw-tmvbnk0ev.jpg",
       "w": 1920,
       "h": 1080,
       "dur": 118.4,
