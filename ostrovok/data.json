@@ -371,8 +371,8 @@
       "id": "v-mvio890fa79s",
       "title": "Приключения Буратино Песня Дуремара (1975)",
       "src": "media/v-mvio890fa79s.mp4",
-      "poster": "media/v-mvio890fa79s-p.jpg",
-      "thumb": "media/v-mvio890fa79s-t.jpg",
+      "poster": "media/v-mvio890fa79s-pmvioba68.jpg",
+      "thumb": "media/v-mvio890fa79s-tmvioba68.jpg",
       "w": 640,
       "h": 480,
       "dur": 153.5,
@@ -382,6 +382,40 @@
       ],
       "by": "Советское телевидение. ГОСТЕЛЕРАДИОФОНД",
       "link": "https://youtu.be/tUcVDYfql-Q?list=RDq8E_Br0fjo0",
+      "loop": false,
+      "codec": "avc1"
+    },
+    {
+      "id": "v-mvio9kjvnaiu",
+      "title": "Плюс 7 минус 7",
+      "src": "media/v-mvio9kjvnaiu.mp4",
+      "poster": "media/v-mvio9kjvnaiu-pmvioaz8u.jpg",
+      "thumb": "media/v-mvio9kjvnaiu-tmvioaz8u.jpg",
+      "w": 1280,
+      "h": 720,
+      "dur": 137.5,
+      "size": 32221018,
+      "cats": [
+        "funny"
+      ],
+      "by": "Riki Music Channel",
+      "link": "https://youtu.be/jO54ZgsmBo8?list=RDq8E_Br0fjo0",
+      "loop": false,
+      "codec": "avc1"
+    },
+    {
+      "id": "v-mvioew9zv716",
+      "title": "“Golden” Official Lyric Video KPop Demon Hunters Sony Animat",
+      "src": "media/v-mvioew9zv716.mp4",
+      "poster": "media/v-mvioew9zv716-pmviogliz.jpg",
+      "thumb": "media/v-mvioew9zv716-tmviogliz.jpg",
+      "w": 1280,
+      "h": 720,
+      "dur": 198.8,
+      "size": 26126040,
+      "cats": [],
+      "by": "Sony Pictures Animation",
+      "link": "https://www.youtube.com/watch?v=yebNIHKAC4A&pp=ygUSZGVtb25zIGh1bnRlciBzb25n",
       "loop": false,
       "codec": "avc1"
     }
