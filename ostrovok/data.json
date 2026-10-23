@@ -40,7 +40,9 @@
       "h": 720,
       "dur": 212.9,
       "size": 9708358,
-      "cats": [],
+      "cats": [
+        "calm"
+      ],
       "by": "Cartoon Network",
       "link": "https://youtu.be/oSXrhmzfmvk",
       "loop": false,
@@ -74,7 +76,9 @@
       "h": 720,
       "dur": 183.8,
       "size": 31527828,
-      "cats": [],
+      "cats": [
+        "funny"
+      ],
       "by": "Кв Ше",
       "link": "https://youtu.be/cthtIQ4p7s8",
       "loop": false,
@@ -291,7 +295,9 @@
       "h": 192,
       "dur": 8.9,
       "size": 303457,
-      "cats": [],
+      "cats": [
+        "funny"
+      ],
       "by": "JessiKittyAnimation",
       "link": "https://youtu.be/fsgQGpugjNY",
       "loop": false,
@@ -307,7 +313,9 @@
       "h": 1032,
       "dur": 80.2,
       "size": 28294900,
-      "cats": [],
+      "cats": [
+        "funny"
+      ],
       "by": "Три богатыря",
       "link": "https://youtu.be/oSXrhmzfmvk",
       "loop": false,
@@ -413,7 +421,9 @@
       "h": 720,
       "dur": 198.8,
       "size": 26126040,
-      "cats": [],
+      "cats": [
+        "clips"
+      ],
       "by": "Sony Pictures Animation",
       "link": "https://www.youtube.com/watch?v=yebNIHKAC4A&pp=ygUSZGVtb25zIGh1bnRlciBzb25n",
       "loop": false,
@@ -447,7 +457,9 @@
       "h": 720,
       "dur": 170.1,
       "size": 23210667,
-      "cats": [],
+      "cats": [
+        "clips"
+      ],
       "by": "Sony Pictures Animation",
       "link": "https://youtu.be/983bBbJx0Mk?list=PLIx2W_gDlNxew8dgSdMn-s-T9noRgJEMA",
       "loop": false,
