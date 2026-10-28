@@ -466,6 +466,24 @@
       "codec": "avc1"
     },
     {
+      "id": "v-mvsh96n83dt5",
+      "title": "Хоккей Песни Смешариков Смешарики 2D",
+      "src": "media/v-mvsh96n83dt5.mp4",
+      "poster": "media/v-mvsh96n83dt5-p.jpg",
+      "thumb": "media/v-mvsh96n83dt5-t.jpg",
+      "w": 1920,
+      "h": 1080,
+      "dur": 60.5,
+      "size": 24982479,
+      "cats": [
+        "clips"
+      ],
+      "by": "Riki Music Channel",
+      "link": "https://youtu.be/0KvRcZZOGq4?list=RD0KvRcZZOGq4",
+      "loop": false,
+      "codec": "avc1"
+    },
+    {
       "id": "v-mvipv6luzelt",
       "title": "Дядюшка Ау (1979) В избушке заколоченной",
       "src": "media/v-mvipv6luzelt.mp4",
@@ -534,22 +552,6 @@
       ],
       "by": "dundurey",
       "link": "https://youtu.be/wOBdi42nDeA?list=PLLQri1D1xP3yqYiTbsXn307lMj5PLcYS_",
-      "loop": false,
-      "codec": "avc1"
-    },
-    {
-      "id": "v-mvsh4kpq290e",
-      "title": "Хоккей Песни Смешариков Смешарики 2D Песенки для детей 1080p",
-      "src": "media/v-mvsh4kpq290e.mp4",
-      "poster": "media/v-mvsh4kpq290e-p.jpg",
-      "thumb": "media/v-mvsh4kpq290e-t.jpg",
-      "w": 1920,
-      "h": 1080,
-      "dur": 60.5,
-      "size": 24982479,
-      "cats": [],
-      "by": "Riki Music Channel",
-      "link": "https://youtu.be/0KvRcZZOGq4?list=RD0KvRcZZOGq4",
       "loop": false,
       "codec": "avc1"
     }
