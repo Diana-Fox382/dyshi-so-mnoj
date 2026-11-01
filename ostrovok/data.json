@@ -698,6 +698,24 @@
       "link": "",
       "loop": false,
       "codec": "avc1"
+    },
+    {
+      "id": "v-mvy3axmahxen",
+      "title": "Сам. Про Красную Шапочку (фильм, 1977)",
+      "src": "media/v-mvy3axmahxen.mp4",
+      "poster": "media/v-mvy3axmahxen-pmvy3bco0.jpg",
+      "thumb": "media/v-mvy3axmahxen-tmvy3bco0.jpg",
+      "w": 1920,
+      "h": 1080,
+      "dur": 106.4,
+      "size": 25759340,
+      "cats": [
+        "clips"
+      ],
+      "by": "Нарезано для вас с любовью от Flesh & Lore",
+      "link": "",
+      "loop": false,
+      "codec": "avc1"
     }
   ]
 }
