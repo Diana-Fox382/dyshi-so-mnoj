@@ -662,6 +662,42 @@
       "link": "",
       "loop": false,
       "codec": "avc1"
+    },
+    {
+      "id": "v-mvy24mi8tfq1",
+      "title": "И вообще! Про Красную Шапочку (фильм, 1977)",
+      "src": "media/v-mvy24mi8tfq1.mp4",
+      "poster": "media/v-mvy24mi8tfq1-p.jpg",
+      "thumb": "media/v-mvy24mi8tfq1-t.jpg",
+      "w": 1920,
+      "h": 1080,
+      "dur": 53.4,
+      "size": 25900890,
+      "cats": [
+        "funny"
+      ],
+      "by": "Нарезано для вас с любовью от Flesh & Lore",
+      "link": "",
+      "loop": false,
+      "codec": "avc1"
+    },
+    {
+      "id": "v-mvy34r9n3v0v",
+      "title": "Необитаемый остров. Про Красную Шапочку (фильм, 1977)",
+      "src": "media/v-mvy34r9n3v0v.mp4",
+      "poster": "media/v-mvy34r9n3v0v-p.jpg",
+      "thumb": "media/v-mvy34r9n3v0v-t.jpg",
+      "w": 1920,
+      "h": 1080,
+      "dur": 146.2,
+      "size": 27124980,
+      "cats": [
+        "clips"
+      ],
+      "by": "Нарезано для вас с любовью от Flesh & Lore",
+      "link": "",
+      "loop": false,
+      "codec": "avc1"
     }
   ]
 }
