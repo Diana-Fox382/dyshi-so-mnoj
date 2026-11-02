@@ -56,13 +56,13 @@ body[data-scene="gold"] .gold,body[data-scene="tree"] .gold{display:block}
 .hint{width:100%;margin:2px 0 0;font-size:12.5px;color:var(--muted)}
 .note{font-size:13.5px;color:var(--muted);max-width:44ch;margin:0}
 .note b{color:var(--fg);font-weight:500}
-.help{margin:0;font-size:14px;color:var(--muted);max-width:40ch;text-wrap:balance}
+.help{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;max-width:46ch}
 .sign{margin:0;font-family:var(--display);font-style:italic;font-size:17px}
 .sign a{color:var(--honey);text-decoration:none;border-bottom:1px solid rgba(240,194,122,.35);padding-bottom:1px}
 .sign a:hover{border-bottom-color:var(--honey)}
 .sign a:focus-visible{outline:2px solid var(--honey);outline-offset:3px}
-.help a{display:inline-block;padding:10px 3px;margin:-10px -3px;line-height:1.5;font-size:15px;font-weight:600;color:var(--fg);white-space:nowrap;text-decoration:underline;text-decoration-color:rgba(240,194,122,.45);text-underline-offset:4px}
-.help a:focus-visible,.call:focus-visible{outline:2px solid var(--honey);outline-offset:2px;border-radius:10px}
+.help a{display:inline-block;padding:10px 3px;margin:-10px -3px;line-height:1.5;font-size:14px;color:var(--fg);white-space:nowrap;text-decoration:underline;text-decoration-color:rgba(240,194,122,.35);text-underline-offset:3px}
+.help a:focus-visible{outline:2px solid var(--honey);outline-offset:2px;border-radius:10px}
 
 /* sheets: the arrival note and the tips */
 .veil{position:fixed;inset:0;z-index:10;display:grid;place-items:center;box-sizing:border-box;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:rgba(12,8,5,.74);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);animation:fade .5s ease-out}
@@ -84,7 +84,6 @@ ul.list li{padding-left:14px;border-left:1px solid var(--line2)}
 .sheet-foot .go{margin-left:auto}
 .veil[hidden]{display:none}
 .seen #warn{display:none}
-.call{display:block;width:fit-content;margin-top:10px;padding:10px 20px;border:1px solid var(--glow);border-radius:999px;color:var(--honey);font-weight:600;text-decoration:none}
 .nav{display:flex;justify-content:center;gap:6px;font-size:13px;margin-bottom:-6px}
 .nav a,.nav span{padding:6px 13px;border-radius:999px;border:1px solid transparent;color:var(--muted);text-decoration:none;transition:color .3s,border-color .3s}
 .nav a:hover{color:var(--fg);border-color:var(--line)}
@@ -114,7 +113,6 @@ ul.list li{padding-left:14px;border-left:1px solid var(--line2)}
   </div>
 
   <button class="go" id="go">Начать</button>
-  <p class="help">Если станет совсем тяжело, позвони: <a href="tel:112">112</a> или бесплатно и круглосуточно <a href="tel:+78003334434">8-800-333-44-34</a>.</p>
 
   <div class="controls">
     <div class="row" role="group" aria-label="Ритм">
@@ -154,6 +152,7 @@ ul.list li{padding-left:14px;border-left:1px solid var(--line2)}
   <button class="soft" id="tipsBtn" aria-haspopup="dialog">Практические советы</button>
 
   <p class="note"><b>Нос заложен?</b> Дыши ртом, выдыхай через чуть сжатые губы, будто дуешь на горячий чай. Главное, чтобы выдох был длиннее вдоха.</p>
+  <p class="help">Если станет совсем тяжело, позвони: <a href="tel:112">112</a> или бесплатно и круглосуточно <a href="tel:+78003334434">8-800-333-44-34</a>.</p>
   <p class="sign"><a href="https://t.me/flesh_and_lore" target="_blank" rel="noopener">С заботой о вас ♡ Flesh &amp; Lore</a></p>
 </div>
 
@@ -161,7 +160,7 @@ ul.list li{padding-left:14px;border-left:1px solid var(--line2)}
   <div class="sheet" tabindex="-1">
     <h2 id="warnTitle">Перед началом</h2>
     <ol class="list">
-      <li><span><b>Сначала исключи опасное.</b> Боль в груди, внезапная сильная одышка, обморок, отёк одной ноги или спутанность сознания нельзя списывать на тревогу без осмотра врача. <a class="call" href="tel:112">Позвонить 112</a></span></li>
+      <li><span><b>Сначала исключи опасное.</b> Боль в груди, внезапная сильная одышка, обморок, отёк одной ноги или спутанность сознания нельзя списывать на тревогу без осмотра врача.</span></li>
       <li><span><b>Головокружение и покалывание в губах или пальцах.</b> Это признаки того, что углекислого газа выдыхается слишком много. Вернись к обычному дыханию и дыши мельче.</span></li>
       <li><span><b>Задержки по самочувствию.</b> Если пауза в 4 · 7 · 8 или в квадрате даётся тяжело, её можно укоротить или убрать: сама задержка не главное, главное медленный темп. При болезнях сердца и лёгких техники с задержками лучше обсудить с врачом.</span></li>
       <li><span><b>Если становится хуже, остановись.</b> У некоторых людей внимание к дыханию само усиливает тревогу и заставляет дышать глубже. Тогда лучше переключиться на разговор, прогулку или другое занятие: дыхание помогает не всем и не всегда.</span></li>
