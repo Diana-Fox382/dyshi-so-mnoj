@@ -144,8 +144,8 @@ video:-webkit-full-screen{object-fit:contain!important;background:#000;border-ra
 
 /* the end of the page */
 .foot{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:6px}
-.help{margin:0 auto;font-size:14px;color:var(--muted);max-width:40ch;text-wrap:balance}
-.help a{display:inline-block;padding:10px 3px;margin:-10px -3px;line-height:1.5;font-size:15px;font-weight:600;color:var(--fg);white-space:nowrap;text-decoration:underline;text-decoration-color:rgba(240,194,122,.45);text-underline-offset:4px}
+.help{margin:0;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;max-width:46ch}
+.help a{display:inline-block;padding:10px 3px;margin:-10px -3px;line-height:1.5;font-size:14px;color:var(--fg);white-space:nowrap;text-decoration:underline;text-decoration-color:rgba(240,194,122,.35);text-underline-offset:3px}
 .help a:focus-visible{outline:2px solid var(--honey);outline-offset:2px;border-radius:10px}
 .authors{margin:0;font-size:13px;color:var(--muted);max-width:44ch;text-wrap:balance}
 .sign{margin:0;font-family:var(--display);font-style:italic;font-size:17px}
@@ -210,8 +210,6 @@ video:-webkit-full-screen{object-fit:contain!important;background:#000;border-ra
     <div class="now" id="now"><span class="now-title" id="nowTitle"></span><span class="now-by" id="nowBy"></span></div>
   </section>
 
-  <p class="help">Если станет совсем тяжело, позвони: <a href="tel:112">112</a> или бесплатно и круглосуточно <a href="tel:+78003334434">8-800-333-44-34</a>.</p>
-
   <div class="row narrow" id="scenes" role="group" aria-label="Картинка" hidden></div>
 
   <section class="picks wide" id="picks" aria-label="Что посмотреть" hidden>
@@ -228,6 +226,7 @@ video:-webkit-full-screen{object-fit:contain!important;background:#000;border-ra
   </section>
 
   <footer class="foot narrow">
+    <p class="help">Если станет совсем тяжело, позвони: <a href="tel:112">112</a> или бесплатно и круглосуточно <a href="tel:+78003334434">8-800-333-44-34</a>.</p>
     <p class="authors">Все видео принадлежат их авторам. Если среди них есть твоё и ты хочешь, чтобы его здесь не было, напиши в группу по ссылке ниже - уберу.</p>
     <p class="sign"><a href="https://t.me/flesh_and_lore" target="_blank" rel="noopener">С заботой о вас ♡ Flesh &amp; Lore</a></p>
   </footer>
