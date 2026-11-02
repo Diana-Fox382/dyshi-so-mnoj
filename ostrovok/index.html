@@ -408,6 +408,7 @@ function selectVideo(id, o = {}) {
   S.video = id;
   vid.pause(); clearTimeout(fadeTimer); clearTimeout(waitTimer);
   stage.classList.remove("playing", "ended", "failed", "wait");
+  setPlayingUI(false); // the new video waits for a tap: the button shows ▶ (loading a new source cancels the "pause" event)
   msg.hidden = true;
   if (v.poster) vid.poster = I.url(v.poster); else vid.removeAttribute("poster");
   vid.loop = !!v.loop;
