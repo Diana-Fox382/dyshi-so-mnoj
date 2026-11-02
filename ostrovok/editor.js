@@ -914,8 +914,11 @@ async function save() {
       const tree = await gh(repo + "/git/trees/" + commit.tree.sha + "?recursive=1");
       const have = new Map((tree.tree || []).filter(t => t.type === "blob").map(t => [t.path, t.sha]));
       const dataPath = full("data.json"), remote = have.get(dataPath) || null;
-      if (attempt === 0 && E.baseSha !== undefined && remote !== E.baseSha && !(remote === null && E.baseSha === null)) {
-        if (!(await ask("Сохранить поверх?", "Пока ты редактировала, данные островка на GitHub поменялись, может быть, с другого устройства. Если сохранить, останется твоя версия.", "Сохранить поверх", "Не сохранять"))) { status("Сохранение отменено. Можно выйти из редактора и открыть его заново, чтобы увидеть свежую версию.", "warn"); return; }
+      // ask before saving over data that changed meanwhile, and also when the fresh data could not be read at all:
+      // then the editor shows the site's copy, which may be older than what is on GitHub
+      const unknown = E.baseSha === undefined && LIVE;
+      if (attempt === 0 && (unknown || (E.baseSha !== undefined && remote !== E.baseSha && !(remote === null && E.baseSha === null)))) {
+        if (!(await ask("Сохранить поверх?", unknown ? "Редактор не смог взять свежие данные с GitHub и показывает то, что сейчас на сайте. Если на GitHub уже есть изменения новее, после сохранения они пропадут." : "Пока ты редактировала, данные островка на GitHub поменялись, может быть, с другого устройства. Если сохранить, останется твоя версия.", "Сохранить поверх", "Не сохранять"))) { status("Сохранение отменено. Можно выйти из редактора и открыть его заново, чтобы увидеть свежую версию.", "warn"); return; }
       }
       const entries = [];
       for (const [p, sha] of E.sent) if (E.files.has(p)) entries.push({path: full(p), mode: "100644", type: "blob", sha});

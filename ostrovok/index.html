@@ -144,8 +144,9 @@ video:-webkit-full-screen{object-fit:contain!important;background:#000;border-ra
 
 /* the end of the page */
 .foot{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:6px}
-.help{margin:0;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;max-width:46ch}
-.help span{color:var(--fg);user-select:all;-webkit-user-select:all;white-space:nowrap}
+.help{margin:0 auto;font-size:14px;color:var(--muted);max-width:40ch;text-wrap:balance}
+.help a{display:inline-block;padding:10px 3px;margin:-10px -3px;line-height:1.5;font-size:15px;font-weight:600;color:var(--fg);white-space:nowrap;text-decoration:underline;text-decoration-color:rgba(240,194,122,.45);text-underline-offset:4px}
+.help a:focus-visible{outline:2px solid var(--honey);outline-offset:2px;border-radius:10px}
 .authors{margin:0;font-size:13px;color:var(--muted);max-width:44ch;text-wrap:balance}
 .sign{margin:0;font-family:var(--display);font-style:italic;font-size:17px}
 .sign a{color:var(--honey);text-decoration:none;border-bottom:1px solid rgba(240,194,122,.35);padding-bottom:1px}
@@ -195,7 +196,7 @@ video:-webkit-full-screen{object-fit:contain!important;background:#000;border-ra
           </span>
         </button>
         </div>
-        <div class="msg" id="msg" hidden><span id="msgText"></span></div>
+        <div class="msg" id="msg" role="alert" hidden><span id="msgText"></span></div>
       </div>
     </div>
 
@@ -208,6 +209,8 @@ video:-webkit-full-screen{object-fit:contain!important;background:#000;border-ra
     </div>
     <div class="now" id="now"><span class="now-title" id="nowTitle"></span><span class="now-by" id="nowBy"></span></div>
   </section>
+
+  <p class="help">Если станет совсем тяжело, позвони: <a href="tel:112">112</a> или бесплатно и круглосуточно <a href="tel:+78003334434">8-800-333-44-34</a>.</p>
 
   <div class="row narrow" id="scenes" role="group" aria-label="Картинка" hidden></div>
 
@@ -225,7 +228,6 @@ video:-webkit-full-screen{object-fit:contain!important;background:#000;border-ra
   </section>
 
   <footer class="foot narrow">
-    <p class="help">Если станет совсем тяжело, позвони: <span>112</span> или бесплатно и круглосуточно <span>8-800-333-44-34</span>.</p>
     <p class="authors">Все видео принадлежат их авторам. Если среди них есть твоё и ты хочешь, чтобы его здесь не было, напиши в группу по ссылке ниже - уберу.</p>
     <p class="sign"><a href="https://t.me/flesh_and_lore" target="_blank" rel="noopener">С заботой о вас ♡ Flesh &amp; Lore</a></p>
   </footer>
@@ -399,13 +401,13 @@ function fitSceneTo(v, instant) {
 
 // ---------- the video ----------
 const canVol = (() => { try { const a = document.createElement("video"); a.volume = 0.5; return Math.abs(a.volume - 0.5) < 0.01; } catch (e) { return false; } })();
-let fadeTimer = 0, dragging = false;
+let fadeTimer = 0, waitTimer = 0, dragging = false;
 function unloadVideo() { vid.pause(); vid.removeAttribute("src"); vid.removeAttribute("poster"); try { vid.load(); } catch (e) {} }
 function selectVideo(id, o = {}) {
   const v = D.videos.find(x => x.id === id); if (!v) return;
   if (S.video === id && !o.force) { markCards(); return; }
   S.video = id;
-  vid.pause(); clearTimeout(fadeTimer);
+  vid.pause(); clearTimeout(fadeTimer); clearTimeout(waitTimer);
   stage.classList.remove("playing", "ended", "failed", "wait");
   msg.hidden = true;
   if (v.poster) vid.poster = I.url(v.poster); else vid.removeAttribute("poster");
@@ -426,7 +428,7 @@ function fadeIn() {
 }
 function toggle() {
   const v = curVideo(); if (!v) return;
-  if (stage.classList.contains("failed")) { selectVideo(v.id, {force: true}); return; }
+  if (stage.classList.contains("failed")) { selectVideo(v.id, {force: true}); fadeIn(); const pr = vid.play(); if (pr && pr.catch) pr.catch(() => {}); return; } // one tap retries and plays
   if (vid.paused || vid.ended) {
     if (vid.ended) { try { vid.currentTime = 0; } catch (e) {} }
     fadeIn();
@@ -474,11 +476,12 @@ const setPlayingUI = on => {
   hit.setAttribute("aria-label", on ? "Пауза" + name : "Включить" + name);
 };
 vid.addEventListener("play", () => { stage.classList.remove("ended"); msg.hidden = true; setPlayingUI(true); });
-vid.addEventListener("playing", () => { stage.classList.remove("wait"); setPlayingUI(true); });
-vid.addEventListener("pause", () => { stage.classList.remove("wait"); setPlayingUI(false); });
+vid.addEventListener("playing", () => { clearTimeout(waitTimer); msg.hidden = true; stage.classList.remove("wait"); setPlayingUI(true); });
+vid.addEventListener("pause", () => { clearTimeout(waitTimer); stage.classList.remove("wait"); setPlayingUI(false); });
 vid.addEventListener("ended", () => { stage.classList.add("ended"); setPlayingUI(false); paintTime(); });
-vid.addEventListener("waiting", () => { if (!vid.paused) stage.classList.add("wait"); });
-vid.addEventListener("canplay", () => stage.classList.remove("wait"));
+// a spinner that turns for 15 seconds gets a word: the connection is gone
+vid.addEventListener("waiting", () => { if (vid.paused) return; stage.classList.add("wait"); clearTimeout(waitTimer); waitTimer = setTimeout(() => { if (stage.classList.contains("wait")) showMsg("Связь пропала. Видео продолжится, когда она вернётся."); }, 15000); });
+vid.addEventListener("canplay", () => { clearTimeout(waitTimer); stage.classList.remove("wait"); });
 vid.addEventListener("timeupdate", paintTime);
 vid.addEventListener("durationchange", paintTime);
 vid.addEventListener("loadedmetadata", () => { paintTime(); if (!curScene()) stage.style.setProperty("--ar", plainAR().toFixed(5)); });
@@ -488,9 +491,10 @@ vid.addEventListener("volumechange", () => {
 });
 vid.addEventListener("error", () => {
   if (!vid.getAttribute("src")) return;
+  clearTimeout(waitTimer);
   stage.classList.remove("playing", "wait"); stage.classList.add("failed"); setPlayingUI(false);
   // a broken connection can be retried; a file the browser cannot open needs another video
-  showMsg(vid.error && vid.error.code === 2 ? "Видео не загрузилось. Проверь интернет и нажми ещё раз." : "Это видео сейчас не открывается. Можно выбрать другое ниже.");
+  showMsg(!navigator.onLine || (vid.error && vid.error.code === 2) ? "Видео не загрузилось. Проверь интернет и нажми ещё раз." : "Это видео сейчас не открывается. Можно выбрать другое ниже.");
 });
 let rafOn = false;
 const tick = () => { if (vid.paused) { rafOn = false; return; } paintTime(); requestAnimationFrame(tick); };
@@ -533,6 +537,10 @@ function renderScenes() {
 }
 function renderGrid() {
   grid.textContent = "";
+  // "Несортированное" shows only when something is unsorted; in the editor it always stays
+  const noneChip = catsEl.querySelector('[data-cat="none"]');
+  noneChip.hidden = !I.editing && !D.videos.some(v => !v.cats.length);
+  if (noneChip.hidden && S.cat === "none") S.cat = "all";
   const list = visibleVideos();
   for (const v of list) {
     const li = document.createElement("li"); li.dataset.id = v.id;
@@ -582,14 +590,17 @@ function loadEditor() {
 I.openEditor = loadEditor;
 addEventListener("hashchange", () => { if (wantsEditor()) loadEditor(); });
 async function boot() {
+  // a list that has not arrived in 10 seconds counts as not loaded, so the frame never stays empty without a word;
+  // when the connection comes back, the list is fetched again by itself
+  const ac = window.AbortController ? new AbortController() : null, to = ac ? setTimeout(() => ac.abort(), 10000) : 0;
   try {
-    const r = await fetch("data.json", {cache: "no-cache"});
+    const r = await fetch("data.json", ac ? {cache: "no-cache", signal: ac.signal} : {cache: "no-cache"});
     if (!r.ok) throw new Error(r.status);
     D = norm(await r.json());
   } catch (e) {
     D = norm({});
-    if (!wantsEditor()) { renderAll(); showMsg("Не получилось загрузить список видео. Проверь интернет и обнови страницу."); return; }
-  }
+    if (!wantsEditor()) { renderAll(); showMsg("Не получилось загрузить список видео. Проверь интернет и обнови страницу."); addEventListener("online", boot, {once: true}); return; }
+  } finally { clearTimeout(to); }
   renderAll();
   if (wantsEditor()) loadEditor();
 }
